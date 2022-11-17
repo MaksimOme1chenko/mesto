@@ -1,0 +1,10 @@
+.profile__edit {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+@media screen and (max-width: 925px) {
+  .profile__edit {
+    margin-bottom: 14px;
+  }
+}
