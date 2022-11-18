@@ -13,7 +13,7 @@
 }
 @media screen and (max-width: 650px) {
   .profile__button-add {
-    max-width: 256px;
+    width: 100%;
   }
 }
 .profile__button-add:hover {
