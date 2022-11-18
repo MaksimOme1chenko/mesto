@@ -10,6 +10,12 @@
     border: none;
     transition: opacity 0.3s linear;
 }
+@media screen and (max-width: 650px) {
+  .profile__button-edit {
+    width: 18px;
+    height: 18px;
+  }
+}
 .profile__button-edit:hover {
   opacity: 0.6;
 }

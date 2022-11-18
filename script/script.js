@@ -12,7 +12,6 @@ const profileJob = document.querySelector('.profile__profession');
 const openPopup = function() {
   popupElement.classList.add('popup__open');
   nameInput.value = profileName.textContent;
-  console.log(nameInput);
   jobInput.value = profileJob.textContent;
 }
 // закрытие попапа

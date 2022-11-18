@@ -3,7 +3,7 @@
   align-items: center;
   margin-bottom: 16px;
 }
-@media screen and (max-width: 925px) {
+@media screen and (max-width: 650px) {
   .profile__edit {
     margin-bottom: 14px;
   }

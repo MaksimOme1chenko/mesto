@@ -8,7 +8,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
-@media screen and (max-width: 925px) {
+@media screen and (max-width: 650px) {
   .profile__profession {
     font-size: 14px;
     line-height: 17px;
