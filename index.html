@@ -8,82 +8,80 @@
   <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="page">
-<header class="header">
-  <img class="header__logo" alt="Логотип" src="./images/Vector.svg"> 
-</header>
-<main class="content">
-  <section class="profile">
-    <img class="profile__avatar" alt="Аватарка" src="./images/image.jpg">
-    <div class="profile__container">
+  <header class="header">
+    <img class="header__logo" alt="Логотип" src="./images/Vector.svg"> 
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img class="profile__avatar" alt="Аватарка" src="./images/image.jpg">
       <div class="profile__info">
         <div class="profile__edit">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__button-edit"></button>
+          <button class="profile__button-edit" type="button"></button>
         </div>
         <p class="profile__profession">Исследователь океана</p>
       </div>
+      <button class="profile__button-add" type="button"></button>
+    </section>
+    <section class="elements">
+      <div class="element">
+        <img class="element__image" alt="Карачаевск" src="./images/karachayesk.jpg">
+        <div class="element__title-container">
+          <h2 class="element__title">Карачаевск</h2>
+          <button class="element__button-like" type="button"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" alt="Гора Эльбрус" src="./images/GoraElbrus.jpg">
+        <div class="element__title-container">
+          <h2 class="element__title">Гора Эльбрус</h2>
+          <button class="element__button-like"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" alt="Домбай" src="./images/Dombai.jpg">
+        <div class="element__title-container">
+          <h2 class="element__title">Домбай</h2>
+          <button class="element__button-like"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" alt="Гора Эльбрус" src="./images/GoraElbrus.jpg">
+        <div class="element__title-container">
+          <h2 class="element__title">Гора Эльбрус</h2>
+          <button class="element__button-like"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" alt="Домбай" src="./images/Dombai.jpg">
+        <div class="element__title-container">
+          <h2 class="element__title">Домбай</h2>
+          <button class="element__button-like"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" alt="Карачаевск" src="./images/karachayesk.jpg">
+        <div class="element__title-container">
+          <h2 class="element__title">Карачаево-Черкессия</h2>
+          <button class="element__button-like"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <h3 class="footer__signature">&copy; 2022 Максим Омельченко</h3>
+  </footer>
+  <section class="popup">
+    <div class="popup__container">
+      <button class="popup__button-close" type="button"></button>
+      <form class="popup__form" name="form" action="#" method="post" novalidate>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <input class="popup__input" id="name" type="text" placeholder="Ведите имя" required>
+        <input class="popup__input" id="profession" type="text" placeholder="Укажите профессию" required>
+        <button class="popup__button-save" type="submit">Сохранить</button>
+      </form>
     </div>
-    <button class="profile__button-add"></button>
   </section>
-  <section class="elements">
-    <div class="element">
-      <img class="element__image" alt="Карачаевск" src="./images/karachayesk.jpg">
-      <div class="element__title-container">
-        <h2 class="element__title">Карачаевск</h2>
-        <button class="element__button-like"></button>
-      </div>
-    </div>
-    <div class="element">
-      <img class="element__image" alt="Гора Эльбрус" src="./images/GoraElbrus.jpg">
-      <div class="element__title-container">
-        <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__button-like"></button>
-      </div>
-    </div>
-    <div class="element">
-      <img class="element__image" alt="Домбай" src="./images/Dombai.jpg">
-      <div class="element__title-container">
-        <h2 class="element__title">Домбай</h2>
-        <button class="element__button-like"></button>
-      </div>
-    </div>
-    <div class="element">
-      <img class="element__image" alt="Гора Эльбрус" src="./images/GoraElbrus.jpg">
-      <div class="element__title-container">
-        <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__button-like"></button>
-      </div>
-    </div>
-    <div class="element">
-      <img class="element__image" alt="Домбай" src="./images/Dombai.jpg">
-      <div class="element__title-container">
-        <h2 class="element__title">Домбай</h2>
-        <button class="element__button-like"></button>
-      </div>
-    </div>
-    <div class="element">
-      <img class="element__image" alt="Карачаевск" src="./images/karachayesk.jpg">
-      <div class="element__title-container">
-        <h2 class="element__title">Карачаево-Черкессия</h2>
-        <button class="element__button-like"></button>
-      </div>
-    </div>
-  </section>
-</main>
-<footer class="footer">
-  <h3 class="footer__signature">&copy; 2022 Максим Омельченко</h3>
-</footer>
-<section class="popup">
-  <div class="popup__container">
-    <button class="popup__button-close"></button>
-    <form class="popup__form" action="#" method="post" novalidate>
-      <h3 class="popup__title">Редактировать профиль</h3>
-      <input class="popup__name" type="text" placeholder="Ведите имя" minlength="2" maxlength="30" required>
-      <input class="popup__profession" type="text" placeholder="Укажите профессию" minlength="2" maxlength="30" required>
-      <button class="popup__button-save" type="submit">Сохранить</button>
-    </form>
-  </div>
-</section>
-<script src="./script/script.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>

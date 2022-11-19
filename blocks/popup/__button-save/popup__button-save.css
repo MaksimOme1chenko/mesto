@@ -12,6 +12,16 @@
   border-radius: 2px;
   cursor: pointer;
   transition: opacity 0.3s linear;
+  border: none;
+}
+@media screen and (max-width: 650px) {
+  .popup__button-save {
+    font-size: 14px;
+    line-height: 16.94px;
+    margin-top: 45px;
+    max-width: 238px;
+    min-height: 46px;
+  }
 }
 .popup__button-save:hover {
   opacity: 0.8;

@@ -1,8 +1,0 @@
-.profile__container {
-  margin-right: auto;
-}
-@media screen and (max-width: 650px) {
-  .profile__container {
-    margin: 0;
-  }
-}
