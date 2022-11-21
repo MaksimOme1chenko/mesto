@@ -1,6 +1,6 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
-
+/* Спасибо за ревью)) */
 /* page */
 @import url(../blocks/page/page.css);
 
@@ -10,7 +10,6 @@
 
 /* profile */
 @import url(../blocks/profile/profile.css);
-@import url(../blocks/profile/__container/profile__container.css);
 @import url(../blocks//profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__edit/profile__edit.css);

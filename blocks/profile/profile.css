@@ -4,7 +4,9 @@
   max-width: 880px;
   display: flex;
   align-items: center;
-  
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media screen and (max-width: 925px) {
   .profile {
