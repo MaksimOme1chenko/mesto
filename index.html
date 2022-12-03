@@ -23,50 +23,7 @@
       </div>
       <button class="profile__button-add" type="button"></button>
     </section>
-    <section class="elements">
-      <div class="element">
-        <img class="element__image" alt="Карачаевск" src="./images/karachayesk.jpg">
-        <div class="element__title-container">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button-like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" alt="Гора Эльбрус" src="./images/GoraElbrus.jpg">
-        <div class="element__title-container">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button-like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" alt="Домбай" src="./images/Dombai.jpg">
-        <div class="element__title-container">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button-like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" alt="Гора Эльбрус" src="./images/GoraElbrus.jpg">
-        <div class="element__title-container">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button-like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" alt="Домбай" src="./images/Dombai.jpg">
-        <div class="element__title-container">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button-like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" alt="Карачаевск" src="./images/karachayesk.jpg">
-        <div class="element__title-container">
-          <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button class="element__button-like" type="button"></button>
-        </div>
-      </div>
-    </section>
+    <section class="elements"></section>
   </main>
   <footer class="footer">
     <h3 class="footer__signature">&copy; 2022 Максим Омельченко</h3>
@@ -82,6 +39,38 @@
       </form>
     </div>
   </section>
+  <section class="popup popup_type_add">
+    <div class="popup__container">
+      <button class="popup__button-close" type="button"></button>
+      <form class="popup__form" name="form" action="#" method="post" novalidate>
+        <h3 class="popup__title">Новое место</h3>
+        <input class="popup__input" id="title" type="text" placeholder="Название" required>
+        <input class="popup__input" id="link" type="text" placeholder="Ссылка на картинку" required>
+        <button class="popup__button-save" type="submit">Создать</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_type_image">
+    <div class= "popup__image-container">
+      <button class="popup__button-close" type="button"></button>
+      <img class="popup__image" src="#" alt="#">
+      <h3 class="popup__signature"></h3>
+    </div>
+  </section>
+  <template id="element-template">
+    <ul class="cards">
+      <li class="element">
+        <button class="element__image-button">
+          <img class="element__image" alt="" src="">
+        </button>
+        <button class="element__button-trash" type="button"></button>
+        <div class="element__title-container">
+          <h2 class="element__title"></h2>
+          <button class="element__button-like" type="button"></button>
+        </div>
+      </li>
+    </ul>
+  </template>
   <script src="./scripts/script.js"></script>
 </body>
 </html>
