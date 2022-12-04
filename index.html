@@ -28,10 +28,10 @@
   <footer class="footer">
     <h3 class="footer__signature">&copy; 2022 Максим Омельченко</h3>
   </footer>
-  <section class="popup">
+  <section class="popup popup_type_edit">
     <div class="popup__container">
       <button class="popup__button-close" type="button"></button>
-      <form class="popup__form" name="form" action="#" method="post" novalidate>
+      <form class="popup__form" name="edit-form" action="#" method="post" novalidate>
         <h3 class="popup__title">Редактировать профиль</h3>
         <input class="popup__input" id="name" type="text" placeholder="Ведите имя" required>
         <input class="popup__input" id="profession" type="text" placeholder="Укажите профессию" required>
@@ -42,7 +42,7 @@
   <section class="popup popup_type_add">
     <div class="popup__container">
       <button class="popup__button-close" type="button"></button>
-      <form class="popup__form" name="form" action="#" method="post" novalidate>
+      <form class="popup__form" name="add-form" action="#" method="post" novalidate>
         <h3 class="popup__title">Новое место</h3>
         <input class="popup__input" id="title" type="text" placeholder="Название" required>
         <input class="popup__input" id="link" type="text" placeholder="Ссылка на картинку" required>

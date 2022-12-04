@@ -1,3 +1,5 @@
+// спасибо вам большое за ревью, особенно за объяснение универсальной функии, было очень интересно почитать и разобраться <3
+// не знаю почему у вас лайки становятся невидимыми, у меня все корректно отображается
 const initialCards = [
   {
     name: 'Архыз',
@@ -26,78 +28,61 @@ const initialCards = [
   }
 ];
 // Выбор элементов
-const popupElement = document.querySelector('.popup');
-const popupCloseButtonElement = popupElement.querySelector('.popup__button-close');
+const popupEditElement = document.querySelector('.popup_type_edit');
 const popupOpenButtonElement = document.querySelector('.profile__button-edit');
-const formElement = popupElement.querySelector('.popup__form');
+const formElement = popupEditElement.querySelector('.popup__form');
 const nameInput = document.querySelector('#name');
 const jobInput = document.querySelector('#profession');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
 const popupAddOpenButtonElement = document.querySelector('.profile__button-add');
 const popupAddElement = document.querySelector('.popup_type_add');
-const popupAddcloseButtonElement = popupAddElement.querySelector('.popup__button-close');
 const popupImageElement = document.querySelector('.popup_type_image');
 const imageElement = document.querySelector('.popup__image');
 const signatureElement = document.querySelector('.popup__signature');
-const popupImageButtonElement = popupImageElement.querySelector('.popup__button-close');
+const popups = document.querySelectorAll('.popup');
 
-// Открытие попапа редактирования профиля 
-const openPopup = function() {
-  popupElement.classList.add('popup_is-opened');
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-};
-// закрытие попапа редактирования профиля 
-const closePopup = function() {
-    popupElement.classList.remove('popup_is-opened');
-  }
+// функция открытия попапов
+function openPopup(popup) {
+  popup.classList.add('popup_is-opened');
+}
 
-// закрытие попапов по клику на оверлей
-const closePopupByClickOnOverlay = function(event) {
-  if(event.target === event.currentTarget) {
-    closePopup()
-    closeAddPopup()
-    closeImagePopup()
-  };
-};
+// закрытие всех попапов по крестику и оверлею
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_is-opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__button-close')) {
+      closePopup(popup);
+    }
+  })
+})
+// функция закрытия попапов
+function closePopup(popup) {
+  popup.classList.remove('popup_is-opened');
+}
 
 // сохранение внесенный изменений в попап редактирования профиля
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup();
-};
-// открытие попапа добавления карточки
-const openAddPopup = function() {
-  popupAddElement.classList.add('popup_is-opened');
-};
-
-// закрытие попапа добавлния карточки
-const closeAddPopup = function() {
-  popupAddElement.classList.remove('popup_is-opened');
-};
-
-// открытие попапа изображения
-function openImagePopup() {
-  popupImageElement.classList.add('popup_is-opened');
-};
-// закрытие попапа изображения
-const closeImagePopup = function() {
-  popupImageElement.classList.remove('popup_is-opened');
+    closePopup(popupEditElement);
 };
 
 // слушатели попапов
-popupAddOpenButtonElement.addEventListener('click', openAddPopup);
-popupOpenButtonElement.addEventListener('click', openPopup);
-popupCloseButtonElement.addEventListener('click', closePopup);
-popupElement.addEventListener('click', closePopupByClickOnOverlay);
-popupAddElement.addEventListener('click', closePopupByClickOnOverlay);
-popupImageElement.addEventListener('click', closePopupByClickOnOverlay);
-formElement.addEventListener('submit', formSubmitHandler);
-popupAddcloseButtonElement.addEventListener('click', closeAddPopup);
-popupImageButtonElement.addEventListener('click', closeImagePopup);
+popupAddOpenButtonElement.addEventListener('click', () => {
+  openPopup(popupAddElement);
+});
+popupOpenButtonElement.addEventListener('click', () => {
+  openPopup(popupEditElement);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+});
+
+formElement.addEventListener('submit', handleProfileFormSubmit);
+
 
 //////////////////////////////////////////////////КАРТОЧКИ/////////////////////////////////////////////////////////////////
 
@@ -116,8 +101,9 @@ function createElement(item) {
   const popupImageButtonElement = cardsListElement.querySelector('.element__image-button');
   cardsTitle.textContent = item.name;
   cardsImage.src = item.link;
+  cardsImage.alt = item.name;
   popupImageButtonElement.addEventListener('click', function(){
-    imagePopupСontent(item);
+    showImagePopupСontent(item);
   });
   trashElement.addEventListener('click', deliteCard);
   likeElement.addEventListener('click', likeActive);
@@ -137,17 +123,19 @@ function create(item) {
 function createNewCard(evt) {
   evt.preventDefault();
   create({name: titleInput.value, link: linkInput.value});
-  closeAddPopup();
+  closePopup(popupAddElement);
+  evt.target.reset();
 };
 
 // обрабобчик клика сохранения карточки
 popupAddElement.addEventListener('submit', createNewCard);
 
 // функция отображения контента в попапе изображения
-function imagePopupСontent (item) {
+function showImagePopupСontent (item) {
   imageElement.src = item.link;
   signatureElement.textContent = item.name;
-  openImagePopup();
+  imageElement.alt = item.name;
+  openPopup(popupImageElement);
 }
 // функция смены класса для кнопки лайк
 function likeActive(event) {
