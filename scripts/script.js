@@ -1,5 +1,4 @@
-// спасибо вам большое за ревью, особенно за объяснение универсальной функии, было очень интересно почитать и разобраться <3
-// не знаю почему у вас лайки становятся невидимыми, у меня все корректно отображается
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -29,10 +28,10 @@ const initialCards = [
 ];
 // Выбор элементов
 const popupEditElement = document.querySelector('.popup_type_edit');
-const popupOpenButtonElement = document.querySelector('.profile__button-edit');
+const popupEditOpenButtonElement = document.querySelector('.profile__button-edit');
 const formElement = popupEditElement.querySelector('.popup__form');
-const nameInput = document.querySelector('#name');
-const jobInput = document.querySelector('#profession');
+const nameInput = document.querySelector('#name-input');
+const jobInput = document.querySelector('#profession-input');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
 const popupAddOpenButtonElement = document.querySelector('.profile__button-add');
@@ -41,13 +40,15 @@ const popupImageElement = document.querySelector('.popup_type_image');
 const imageElement = document.querySelector('.popup__image');
 const signatureElement = document.querySelector('.popup__signature');
 const popups = document.querySelectorAll('.popup');
+const formAddElement = popupAddElement.querySelector('.popup__form')
 
 // функция открытия попапов
-function openPopup(popup) {
+function openPopup(popup, error) {
   popup.classList.add('popup_is-opened');
+  document.addEventListener('keydown', closePopupByClickOnEsc);
 }
 
-// закрытие всех попапов по крестику и оверлею
+// закрытие всех попапов по крестику оверлею и esc
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_is-opened')) {
@@ -58,9 +59,18 @@ popups.forEach((popup) => {
     }
   })
 })
+
+// функция закрытия попапа п оклику на esc
+function closePopupByClickOnEsc(e) {
+  if(e.key === 'Escape'){
+    closePopup(document.querySelector('.popup_is-opened'));
+ }
+}
+
 // функция закрытия попапов
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
+  document.removeEventListener('keydown', closePopupByClickOnEsc);
 }
 
 // сохранение внесенный изменений в попап редактирования профиля
@@ -70,15 +80,34 @@ function handleProfileFormSubmit(evt) {
     profileJob.textContent = jobInput.value;
     closePopup(popupEditElement);
 };
+// сброс ошибок
+function resetSpan() { 
+  const popupSpan = document.querySelectorAll('.popup__input-error');
+  popupSpan.forEach((errorSpan) => {
+    errorSpan.textContent = '';
+  })
+}
+// сброс ошибки инпута
+function resetInput() { 
+  const popupInput = document.querySelectorAll('.popup__input')
+  popupInput.forEach((errorinput) => {
+    errorinput.classList.remove('popup__input_type_error');
+  })
+}
 
 // слушатели попапов
 popupAddOpenButtonElement.addEventListener('click', () => {
   openPopup(popupAddElement);
+  formAddElement.reset();
+  resetSpan();  
+  resetInput();
 });
-popupOpenButtonElement.addEventListener('click', () => {
+popupEditOpenButtonElement.addEventListener('click', () => {
   openPopup(popupEditElement);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  resetSpan();  
+  resetInput();
 });
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
@@ -88,8 +117,8 @@ formElement.addEventListener('submit', handleProfileFormSubmit);
 
 const template = document.querySelector('#element-template').content.querySelector('.element');
 const cards = document.querySelector('.elements');
-const titleInput = document.querySelector('#title');
-const linkInput = document.querySelector('#link');
+const titleInput = document.querySelector('#title-input');
+const linkInput = document.querySelector('#link-input');
 
 // создание карточки
 function createElement(item) {
