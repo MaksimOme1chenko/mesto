@@ -1,35 +1,8 @@
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 // Выбор элементов
 const popupEditElement = document.querySelector('.popup_type_edit');
 const popupEditOpenButtonElement = document.querySelector('.profile__button-edit');
-const formElement = popupEditElement.querySelector('.popup__form');
+const popupFormElement = popupEditElement.querySelector('.popup__form');
 const nameInput = document.querySelector('#name-input');
 const jobInput = document.querySelector('#profession-input');
 const profileName = document.querySelector('.profile__name');
@@ -43,7 +16,7 @@ const popups = document.querySelectorAll('.popup');
 const formAddElement = popupAddElement.querySelector('.popup__form')
 
 // функция открытия попапов
-function openPopup(popup, error) {
+function openPopup(popup) {
   popup.classList.add('popup_is-opened');
   document.addEventListener('keydown', closePopupByClickOnEsc);
 }
@@ -80,37 +53,25 @@ function handleProfileFormSubmit(evt) {
     profileJob.textContent = jobInput.value;
     closePopup(popupEditElement);
 };
-// сброс ошибок
-function resetSpan() { 
-  const popupSpan = document.querySelectorAll('.popup__input-error');
-  popupSpan.forEach((errorSpan) => {
-    errorSpan.textContent = '';
-  })
-}
-// сброс ошибки инпута
-function resetInput() { 
-  const popupInput = document.querySelectorAll('.popup__input')
-  popupInput.forEach((errorinput) => {
-    errorinput.classList.remove('popup__input_type_error');
-  })
-}
 
 // слушатели попапов
 popupAddOpenButtonElement.addEventListener('click', () => {
   openPopup(popupAddElement);
   formAddElement.reset();
-  resetSpan();  
-  resetInput();
+  resetErrors(validateConfig, formAddElement)
+  resetInputs(validateConfig, formAddElement)
 });
+
 popupEditOpenButtonElement.addEventListener('click', () => {
   openPopup(popupEditElement);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  resetSpan();  
-  resetInput();
+  resetErrors(validateConfig, popupEditElement); 
+  resetInputs(validateConfig, popupEditElement) 
+  
 });
 
-formElement.addEventListener('submit', handleProfileFormSubmit);
+popupFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 
 //////////////////////////////////////////////////КАРТОЧКИ/////////////////////////////////////////////////////////////////
@@ -144,16 +105,15 @@ initialCards.forEach(function(item){
 });
 
 // добавление новой карточки в dom
-function create(item) {
+function createCardElement(item) {
   const newElement = createElement(item);
   cards.prepend(newElement);
 };
 // сохранение карточки
 function createNewCard(evt) {
   evt.preventDefault();
-  create({name: titleInput.value, link: linkInput.value});
+  createCardElement({name: titleInput.value, link: linkInput.value});
   closePopup(popupAddElement);
-  evt.target.reset();
 };
 
 // обрабобчик клика сохранения карточки
