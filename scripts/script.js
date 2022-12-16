@@ -2,7 +2,7 @@
 // Выбор элементов
 const popupEditElement = document.querySelector('.popup_type_edit');
 const popupEditOpenButtonElement = document.querySelector('.profile__button-edit');
-const popupFormElement = popupEditElement.querySelector('.popup__form');
+const popupEditFormElement = popupEditElement.querySelector('.popup__form');
 const nameInput = document.querySelector('#name-input');
 const jobInput = document.querySelector('#profession-input');
 const profileName = document.querySelector('.profile__name');
@@ -14,6 +14,7 @@ const imageElement = document.querySelector('.popup__image');
 const signatureElement = document.querySelector('.popup__signature');
 const popups = document.querySelectorAll('.popup');
 const formAddElement = popupAddElement.querySelector('.popup__form')
+const popupAddSaveButton = popupAddElement.querySelector('.popup__button-save');
 
 // функция открытия попапов
 function openPopup(popup) {
@@ -24,10 +25,7 @@ function openPopup(popup) {
 // закрытие всех попапов по крестику оверлею и esc
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_is-opened')) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup__button-close')) {
+    if (evt.target.classList.contains('popup_is-opened') || evt.target.classList.contains('popup__button-close')) {
       closePopup(popup);
     }
   })
@@ -60,6 +58,7 @@ popupAddOpenButtonElement.addEventListener('click', () => {
   formAddElement.reset();
   resetErrors(validateConfig, formAddElement)
   resetInputs(validateConfig, formAddElement)
+  disableButton(popupAddSaveButton, validateConfig)
 });
 
 popupEditOpenButtonElement.addEventListener('click', () => {
@@ -71,7 +70,7 @@ popupEditOpenButtonElement.addEventListener('click', () => {
   
 });
 
-popupFormElement.addEventListener('submit', handleProfileFormSubmit);
+popupEditFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 
 //////////////////////////////////////////////////КАРТОЧКИ/////////////////////////////////////////////////////////////////

@@ -37,7 +37,7 @@ const resetErrors = (validateConfig, form) => {
 }
 
 
-const disabledButton = (inputs, saveButton, validateConfig) => {
+const toggleButtonState = (inputs, saveButton, validateConfig) => {
   const formValid = inputs.every(input => input.validity.valid);
   if (formValid) {
     enableButton(saveButton, validateConfig)
@@ -65,7 +65,7 @@ const enableValidation = (validateConfig) => {
     inputs.forEach(input => {
       input.addEventListener('input', function () {    
           validateInput(input, validateConfig)
-          disabledButton(inputs, saveButton, validateConfig)
+          toggleButtonState(inputs, saveButton, validateConfig)
         })
     })
   })
