@@ -7,24 +7,25 @@ export class FormValidator {
     this._errors = this._form.querySelectorAll(this._validateConfig.errorClass);
   }
 
-  _showError = (input, error) => {
+  _hideError = (input) => {
+    const error = this._form.querySelector(`#${input.id}-error`);
     error.textContent = '';
     error.classList.remove(this._validateConfig.errorClassActive);
     input.classList.remove(this._validateConfig.inputErrorClass);
   }
 
-  _hideError = (input, error) => {
+  _showError = (input) => {
+    const error = this._form.querySelector(`#${input.id}-error`);
     error.textContent = input.validationMessage;
     error.classList.add(this._validateConfig.errorClassActive);
     input.classList.add(this._validateConfig.inputErrorClass);
   }
 
   _validateInput = (input) => {
-    const error = document.querySelector(`#${input.id}-error`);
     if (input.validity.valid) {
-      this._showError(input, error)
+      this._hideError(input)
     } else {
-      this._hideError(input, error)
+      this._showError(input)
     }
   }
 
@@ -48,17 +49,9 @@ export class FormValidator {
     this._saveButton.disabled = true;
   }
 
-  resetErrors = () => {
-    this._errors.forEach(error => {
-      if(error.textContent){
-        error.textContent = ''
-      }
-    })
-  }
-
   resetInputs = () => { 
     this._popupInputs.forEach((errorinput) => {
-      errorinput.classList.remove(this._validateConfig.inputErrorClass);
+      this._hideError(errorinput)
     })
     this._toggleButtonState()
   }

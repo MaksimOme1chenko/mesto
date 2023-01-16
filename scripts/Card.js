@@ -1,8 +1,8 @@
-import { openPopup, popupImageElement, imageElement, signatureElement} from "./index.js"
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, showImagePopupСontent) {
     this._title = data.name;
     this._image = data.link;
+    this._showImagePopupСontent = showImagePopupСontent
     this._cardsListElement = document.querySelector(templateSelector).content.querySelector('.element');
     this._element = this._cardsListElement.cloneNode(true);
     this._likeElement = this._element.querySelector('.element__button-like');
@@ -10,25 +10,21 @@ export class Card {
     this._popupImageButtonElement = this._element.querySelector('.element__image-button');
   }
   
-  _deleteCard = (evt) => {
-    evt.target.closest('.element').remove();
+  _deleteCard = () => {
+    this._element.remove();
+    this._element = null
   }
 
   _likeActive = () => {
     this._likeElement.classList.toggle('element__button-like_active');
   }
 
-  _showImagePopupСontent = () => {
-    imageElement.src = this._image;
-    imageElement.alt = this._title;
-    signatureElement.textContent = this._title;
-    openPopup(popupImageElement);
-  }
-
   _setEventListeners() {
     this._likeElement.addEventListener('click', this._likeActive);
     this._trashElement.addEventListener('click', this._deleteCard);
-    this._popupImageButtonElement.addEventListener('click', this._showImagePopupСontent);
+    this._popupImageButtonElement.addEventListener('click', () =>{ 
+      this._showImagePopupСontent(this._title, this._image) 
+    });   
   }
 
   createElement() {

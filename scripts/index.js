@@ -1,6 +1,6 @@
 import { Card } from "./Card.js";
 import { initialCards } from "./constants.js"
-import { FormValidator} from "./validate.js"
+import { FormValidator} from "./FormValidator.js"
 
 
 // Выбор элементов
@@ -13,9 +13,9 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
 const popupAddOpenButtonElement = document.querySelector('.profile__button-add');
 const popupAddElement = document.querySelector('.popup_type_add');
-export const popupImageElement = document.querySelector('.popup_type_image');
-export const imageElement = document.querySelector('.popup__image');
-export const signatureElement = document.querySelector('.popup__signature');
+const popupImageElement = document.querySelector('.popup_type_image');
+const imageElement = document.querySelector('.popup__image');
+const signatureElement = document.querySelector('.popup__signature');
 const popups = document.querySelectorAll('.popup');
 const formAddElement = popupAddElement.querySelector('.popup__form');
 const popupAddSaveButton = popupAddElement.querySelector('.popup__button-save');
@@ -78,7 +78,6 @@ function handleProfileFormSubmit(evt) {
 popupAddOpenButtonElement.addEventListener('click', () => {
   openPopup(popupAddElement);
   formAddElement.reset();
-  validationOnPopupAdd.resetErrors()
   validationOnPopupAdd.resetInputs()
   
 });
@@ -87,7 +86,6 @@ popupEditOpenButtonElement.addEventListener('click', () => {
   openPopup(popupEditElement);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  validationOnPopupEdit.resetErrors()
   validationOnPopupEdit.resetInputs()
   
 });
@@ -99,7 +97,7 @@ const titleInput = document.querySelector('#title-input');
 const linkInput = document.querySelector('#link-input');
 
 function createElement(data) {
-  const card  = new Card(data, '#element-template');
+  const card  = new Card(data, '#element-template', showImagePopupСontent);
   const cardElement = card.createElement()
   cards.prepend(cardElement)
   
@@ -109,6 +107,13 @@ function createElement(data) {
 initialCards.forEach((data) => {
   createElement(data);
 });
+
+function showImagePopupСontent(name, link) {
+  imageElement.src = link; 
+  imageElement.alt = name; 
+  signatureElement.textContent = name; 
+  openPopup(popupImageElement); 
+}   
 
 
 // добавление новой карточки в dom
