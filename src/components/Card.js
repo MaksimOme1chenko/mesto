@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(data, templateSelector, showImagePopupСontent) {
     this._title = data.name;
     this._image = data.link;
@@ -23,7 +23,8 @@ export class Card {
     this._likeElement.addEventListener('click', this._likeActive);
     this._trashElement.addEventListener('click', this._deleteCard);
     this._popupImageButtonElement.addEventListener('click', () =>{ 
-      this._showImagePopupСontent(this._title, this._image) 
+      this._showImagePopupСontent(this._title, this._image)
+       
     });   
   }
 
@@ -39,3 +40,4 @@ export class Card {
     return this._element;
   }
 }
+

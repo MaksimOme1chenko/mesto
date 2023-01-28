@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Максим Омельченко">
   <title>Место</title>
-  <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" alt="Логотип" src="./images/Vector.svg"> 
+    <img class="header__logo" alt="Логотип" src="<%=require('./images/Vector.svg')%>"> 
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" alt="Аватарка" src="./images/image.jpg">
+      <img class="profile__avatar" alt="Аватарка" src="<%=require('./images/image.jpg')%>">
       <div class="profile__info">
         <div class="profile__edit">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -33,10 +32,10 @@
       <button class="popup__button-close" type="button"></button>
       <form class="popup__form" name="edit-form" action="#" method="post" novalidate>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <input class="popup__input" id="name-input" type="text" placeholder="Ведите имя" minlength="2" maxlength="40" required>
-        <span class="popup__input-error" id="name-input-error"></span>
-        <input class="popup__input" id="profession-input" type="text" placeholder="Укажите профессию" minlength="2" maxlength="200" required>
-        <span class="popup__input-error" id="profession-input-error"></span>
+        <input class="popup__input" id="name" name="name" type="text" placeholder="Ведите имя" minlength="2" maxlength="40" required>
+        <span class="popup__input-error" id="name-error"></span>
+        <input class="popup__input" id="profession" name="profession" type="text" placeholder="Укажите профессию" minlength="2" maxlength="200" required>
+        <span class="popup__input-error" id="profession-error"></span>
         <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
     </div>
@@ -75,9 +74,5 @@
       </li>
     </ul>
   </template>
-  <script type="module" src="./scripts/index.js"></script>
-  <script type="module" src="./scripts/Card.js"></script>
-  <script type="module" src="./scripts/constants.js"></script>
-  <script type="module" src="./scripts/validate.js"></script>
 </body>
 </html>
