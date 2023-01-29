@@ -1,5 +1,5 @@
 import Card  from "../components/Card.js";
-import { initialCards } from "../components/constants.js"
+import { initialCards } from "../utils/constants.js"
 import FormValidator from "../components/FormValidator.js"
 import Section from "../components/Section.js"
 import PopupWithForm from "../components/PopupWithForm.js"
@@ -44,11 +44,11 @@ validationOnPopupAdd.enableValidation();
 const popupImage = new PopupWithImage('.popup_type_image');
 popupImage.setEventListeners()
 
-const popupAdd = new PopupWithForm('.popup_type_add', handleAddFormSubmit);
-popupAdd.setEventListeners()
+const popupAddCard = new PopupWithForm('.popup_type_add', handleAddFormSubmit);
+popupAddCard.setEventListeners()
 
-const popupEdit = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit);
-popupEdit.setEventListeners()
+const popupEditProfile = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit);
+popupEditProfile.setEventListeners()
 
 const profileInfo = new UserInfo({
   nameSelector: profileName, 
@@ -65,9 +65,9 @@ cards
 );
 initialCardsList.renderItems();
 
-function handleProfileFormSubmit(object) {
-  profileInfo.setUserInfo(object);
-  popupEdit.close()
+function handleProfileFormSubmit(inputValues) {
+  profileInfo.setUserInfo(inputValues);
+  popupEditProfile.close()
 }
 
 popupEditOpenButtonElement.addEventListener('click', () => {
@@ -75,22 +75,21 @@ popupEditOpenButtonElement.addEventListener('click', () => {
   nameInput.value = userInfo.nameSelector;
   jobInput.value = userInfo.professionSelector;
   validationOnPopupEdit.resetInputs()
-  popupEdit.open()
+  popupEditProfile.open()
 });
 
-function handleAddFormSubmit() {
-  const newCardElement = {
-    link: popupAddLink.value,
-    name: popupAddTitle.value
+function handleAddFormSubmit(inputValues) {
+    const newCardElement = {
+      link: inputValues.link,
+      name: inputValues.title
+    }
+    cards.prepend(createElement(newCardElement))
+    popupAddCard.close()
+    validationOnPopupAdd.resetInputs()
   }
-  cards.prepend(createElement(newCardElement))
-  popupAdd.close()
-  validationOnPopupAdd.resetInputs()
-}
 
 popupAddOpenButtonElement.addEventListener('click', () => {
-  popupAdd.open()
-  formAddElement.reset();
+  popupAddCard.open();
   validationOnPopupAdd.resetInputs()
 })
 
