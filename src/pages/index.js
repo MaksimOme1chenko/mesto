@@ -104,13 +104,13 @@ popupAvatar.setEventListeners()
 
 const profileInfo = new UserInfo(profileName, profileJob, avatarSelector)
 
-const initialCardsList = new Section((cardItem) => createElement(cardItem), cards) 
+const initialCardsList = new Section((cardItem) => generateCard(cardItem), cards) 
 
 function showImagePopupСontent(name, link) {
   popupImage.open(name, link)
 }
 
-const createElement = (data) => {
+const generateCard = (data) => {
   const card = new Card(
     data,
     '#element-template',
@@ -121,7 +121,7 @@ const createElement = (data) => {
         api
            .deleteCard(data._id)
            .then(() => {
-            card.deleteCard();
+            card.removeCard();
             popupDelite.close()
            })
            .catch((err) => console.log(err))

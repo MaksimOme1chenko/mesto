@@ -20,7 +20,7 @@ export default class Card {
     this._popupImageButtonElement = this._element.querySelector('.element__image-button');
   }
   
-  deleteCard = () => {
+  removeCard = () => {
     this._element.remove();
     this._element = null;
   }
