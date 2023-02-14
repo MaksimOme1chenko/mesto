@@ -8,11 +8,14 @@
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" alt="Логотип" src="<%=require('./images/Vector.svg')%>"> 
+    <img class="header__logo" alt="Логотип" src="<%=require('./images/Vector.svg')%>">
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" alt="Аватарка" src="<%=require('./images/image.jpg')%>">
+      <div class="profile__avatar-container">
+        <img class="profile__avatar" alt="Аватарка" src=" ">
+        <button class="profile__avatar-button" type="button"></button>
+      </div>
       <div class="profile__info">
         <div class="profile__edit">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -60,6 +63,26 @@
       <h3 class="popup__signature"></h3>
     </div>
   </section>
+  <section class="popup popup_type_confirm">
+    <div class="popup__container">
+      <button class="popup__button-close" type="button"></button>
+      <form class="popup__form" name="confirm-form" action="#" method="post" novalidate>
+        <h3 class="popup__title">Вы уверены?</h3>
+        <button class="popup__button-save" type="submit">Да</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button class="popup__button-close" type="button"></button>
+      <form class="popup__form" name="confirm-form" action="#" method="post" novalidate>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <input class="popup__input" id="link-input" name="avatar" type="url" placeholder="Ссылка на картинку" required value="">
+        <span class="popup__input-error" id="link-input-error"></span>
+        <button class="popup__button-save" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
   <template id="element-template">
     <ul class="cards">
       <li class="element">
@@ -69,7 +92,10 @@
         <button class="element__button-trash" type="button"></button>
         <div class="element__title-container">
           <h2 class="element__title"></h2>
-          <button class="element__button-like" type="button"></button>
+          <div class="element__like-container">
+            <button class="element__button-like" type="button"></button>
+            <p class="element__quantity-like">0</p>
+          </div>
         </div>
       </li>
     </ul>

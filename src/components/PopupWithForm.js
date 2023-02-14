@@ -17,17 +17,28 @@ export default class PopupWithForm extends Popup{
     return formValues
   } 
   
+  renderLoading(isLoading) {
+   if(isLoading){
+    this._saveButton = this._popup.querySelector('.popup__button-save').textContent = 'Сохранение...';
+   }else{
+    this._saveButton = this._popup.querySelector('.popup__button-save').textContent = 'Сохранить';
+   }
+  }
+
   close() {
     super.close()
     this._form.reset()
   }
 
+  
+
+
   setEventListeners() {
     super.setEventListeners();
-
     this._form.addEventListener('submit', (e) => {
       e.preventDefault();
       this._formSubmit(this._getInputValues());
+      this.close()
     });
   }
 }

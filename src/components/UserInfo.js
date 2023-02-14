@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor({nameSelector, professionSelector}) {
+  constructor(nameSelector, professionSelector, avatarSelector) {
     this._nameSelector = nameSelector;
     this._professionSelector = professionSelector;
+    this._avatarSelector = avatarSelector
   }
   getUserInfo() {
     const profileFormInfo = {
@@ -11,8 +12,9 @@ export default class UserInfo {
       return profileFormInfo
   }
 
-  setUserInfo({name, profession}) {
-    this._nameSelector.textContent = name;
-    this._professionSelector.textContent = profession;
+  setUserInfo({ name, about, avatar }) {
+    this._nameSelector.textContent =  name;
+    this._professionSelector.textContent =  about;
+    this._avatarSelector.src =  avatar;
   }
 }
