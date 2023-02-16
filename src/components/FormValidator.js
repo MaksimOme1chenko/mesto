@@ -4,7 +4,6 @@ export default class FormValidator {
     this._validateConfig = validateConfig;
     this._popupInputs = this._form.querySelectorAll(this._validateConfig.inputSelector);
     this._saveButton = this._form.querySelector(this._validateConfig.submitButtonSelector);
-    this._errors = this._form.querySelectorAll(this._validateConfig.errorClass);
   }
 
   _hideError = (input) => {
@@ -49,7 +48,7 @@ export default class FormValidator {
     this._saveButton.disabled = true;
   }
 
-  resetInputs = () => { 
+  resetValidation = () => { 
     this._popupInputs.forEach((errorinput) => {
       this._hideError(errorinput)
     })

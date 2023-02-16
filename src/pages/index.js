@@ -1,39 +1,27 @@
 import Card  from "../components/Card.js";
-import { initialCards } from "../utils/constants.js"
 import FormValidator from "../components/FormValidator.js"
 import Section from "../components/Section.js"
 import PopupWithForm from "../components/PopupWithForm.js"
 import PopupWithImage from "../components/PopupWithImage.js"
 import UserInfo from "../components/UserInfo.js"
-import popupWithConfim from "../components/popupWithConfirm.js";
+import PopupWithConfim from "../components/PopupWithConfirm.js";
 import Api  from "../components/Api.js"
 import "./index.css"
-
-const popupEditElement = document.querySelector('.popup_type_edit');
-const popupEditOpenButtonElement = document.querySelector('.profile__button-edit');
-const popupEditFormElement = popupEditElement.querySelector('.popup__form');
-const popupAvatarElement = document.querySelector('.popup_type_avatar')
-const nameInput = document.querySelector('input[name="name"]');
-const jobInput = document.querySelector('input[name="profession"]');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__profession');
-const popupAddOpenButtonElement = document.querySelector('.profile__button-add');
-const popupAddElement = document.querySelector('.popup_type_add');
-const formAddElement = popupAddElement.querySelector('.popup__form');
-const cards = document.querySelector('.elements');
-const popupAvatarOpenButtonElement = document.querySelector('.profile__avatar-button');
-const avatarSelector = document.querySelector('.profile__avatar')
-const popupAvatarFormElement = popupAvatarElement.querySelector('.popup__form')
-
-const validateConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button-save_invalid',
-  inputErrorClass: 'popup__input_type_error',
-  errorClassActive: 'popup__input-error_active', 
-  errorClass: '.popup__input-error'
-}
+import {
+  popupEditOpenButtonElement,
+  popupEditFormElement,
+  nameInput,
+  jobInput,
+  profileName,
+  profileJob,
+  popupAddOpenButtonElement,
+  formAddElement,
+  cards,
+  popupAvatarOpenButtonElement,
+  avatarSelector,
+  popupAvatarFormElement,
+  validateConfig
+} from '../utils/constants.js'
 
 
 const api = new Api({
@@ -54,7 +42,7 @@ const validationOnPopupAvatar = new FormValidator(validateConfig, popupAvatarFor
 validationOnPopupAvatar.enableValidation();
 
 
-const popupDelite = new popupWithConfim('.popup_type_confirm')
+const popupDelite = new PopupWithConfim('.popup_type_confirm')
 popupDelite.setEventListeners()
 
 const popupImage = new PopupWithImage('.popup_type_image');
@@ -82,6 +70,7 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', (formData) => {
     .changeUserInfo(formData)
     .then((data) => {
       profileInfo.setUserInfo(data)
+      popupEditProfile.close()
     })
     .catch((err) => console.log(err))
     .finally(() => popupEditProfile.renderLoading(false));
@@ -95,6 +84,7 @@ const popupAvatar = new PopupWithForm('.popup_type_avatar', (formData) => {
     .changeUserAvatar(formData)
     .then((data) => {
       profileInfo.setUserInfo(data)
+      popupAvatar.close()
     })
     .catch((err) => console.log(err))
     .finally(() => popupAvatar.renderLoading(false));
@@ -137,6 +127,7 @@ const generateCard = (data) => {
             card.updateData(data)
             card.updateLikesView()
            })
+           .catch((err) => console.log(err))
       } else {
         api
            .deleteLike(data._id)
@@ -144,6 +135,7 @@ const generateCard = (data) => {
             card.updateData(data);
             card.updateLikesView();
            })
+           .catch((err) => console.log(err))
       }
     },
     userId
@@ -163,7 +155,7 @@ let userId
 
 
 popupAvatarOpenButtonElement.addEventListener('click', () => {
-  validationOnPopupAdd
+  validationOnPopupAvatar.resetValidation()
   popupAvatar.open()
 })
 
@@ -171,11 +163,11 @@ popupEditOpenButtonElement.addEventListener('click', () => {
   const userInfo = profileInfo.getUserInfo();
   nameInput.value = userInfo.nameSelector;
   jobInput.value = userInfo.professionSelector;
-  validationOnPopupEdit.resetInputs()
+  validationOnPopupEdit.resetValidation()
   popupEditProfile.open()
 });
 
 popupAddOpenButtonElement.addEventListener('click', () => {
   popupAddCard.open();
-  validationOnPopupAdd.resetInputs()
+  validationOnPopupAdd.resetValidation()
 })

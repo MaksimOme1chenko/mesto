@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-export default class popupWithConfim extends Popup {
+export default class PopupWithConfim extends Popup {
   constructor(popupSelector) {
     super(popupSelector)
     this._saveButton = this._popup.querySelector('.popup__button-save')
